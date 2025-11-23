@@ -5,28 +5,9 @@
 [![Branch](https://img.shields.io/badge/branch-main-blue.svg)]()
 [![License: TODO](https://img.shields.io/badge/license-TODO-lightgrey.svg)]()
 
-![JUno Hero](docs/images/hero.png)
-
 JUno is a Java implementation of the UNO card game designed with solid object-oriented principles and a layered architecture. The project separates the core game engine, rules and services, AI players, and front-end modules. It demonstrates applied design patterns (Factory, Strategy, Observer, Command) and uses the Model-View-Controller (MVC) pattern to keep the UI modular and replaceable.
 
-Table of Contents
-- Overview
-- Highlights
-- Architecture & Design
-- Features
-- Quick Start
-  - Requirements
-  - Build
-  - Run
-- Configuration
-- Gameplay (short)
-- AI & Strategies
-- Extending JUno
-- Tests & CI
-- Contributing
-- Roadmap
-- License
-- Credits & Contact
+![JUno Hero](project-docs/images/ViewGame.png)
 
 Overview
 --------
@@ -50,15 +31,26 @@ High level layers:
 - AI: pluggable Strategy implementations for CPU players
 - Front-end: CLI, GUI, or headless execution that communicates with the engine via controllers
 
-Recommended architecture diagram (add to docs/images/architecture.png):
-![Architecture](docs/images/architecture.png)
-
 Design Patterns used
 - Factory — to create and configure cards, decks and players
 - Strategy — to encapsulate different AI behaviors
 - Observer — to propagate game events to UIs, logs and analytics
 - Command — to model player actions (play, draw, pass) and support undo if needed
 - MVC — decouples UI from game model for multiple front-ends
+
+
+## UML Class Diagrams
+
+### Model
+
+![Model](project-docs/uml_diagrams/UMLdiagram_Model.png)
+
+### View
+![View](project-docs/uml_diagrams/UMLdiagram_View.png)
+
+### Controller
+![Controller](project-docs/uml_diagrams/UMLdiagram_Controller.png)
+
 
 Features
 --------
@@ -149,65 +141,8 @@ mvn test
 - Add GitHub Actions workflow (/.github/workflows/ci.yml) to run tests on PRs
 - Recommended checks: mvn -DskipTests=false verify, static analysis (SpotBugs/Checkstyle)
 
-Contribution
-------------
-We welcome contributions. Please follow these guidelines:
-1. Fork the repository and create a topic branch: feature/..., fix/..., docs/...
-2. Write clear commit messages and keep commits focused.
-3. Add or update unit tests for changes to logic.
-4. Open a Pull Request against `main` with:
-   - Title describing purpose
-   - Description of what changed and why
-   - Screenshots (if UI) and small usage examples
-5. Follow the project's code style (Google Java Style / checkstyle)
-
-Suggested Developer Workflow
-- git checkout -b feature/ai-heuristic
-- implement code & tests
-- mvn test
-- push and open PR
-
-Roadmap
--------
-Planned improvements:
-- GUI (JavaFX) reference implementation
-- Networked multiplayer
-- More advanced AI using MCTS
-- Plugin system for custom variants
-- Docker image for running headless tournaments
-
 License
 -------
-This repository currently does not contain a license. For broad community adoption, consider adding an OSI-approved license such as MIT or Apache-2.0.
-
-Example: add LICENSE file with MIT text.
-
-Changelog
----------
-See CHANGELOG.md for release notes and major changes (create as the project evolves).
-
-Assets & Images
----------------
-Add these assets to docs/images/:
-- hero.png — project hero image (screenshot of UI or card art)
-- architecture.png — high level architecture diagram (PlantUML or diagram)
-- gameplay.gif — short animated gameplay demo
-
-PlantUML example (save as docs/diagrams/architecture.puml):
-```plantuml
-@startuml
-package "UI" {
-  [CLI] --> Controller
-  [GUI] --> Controller
-}
-Controller --> Engine
-Engine --> RulesService
-Engine --> Deck
-Engine --> Players
-Players --> AI
-@enduml
-```
-Generate PNG: plantuml docs/diagrams/architecture.puml
 
 Contact & Credits
 -----------------
@@ -217,7 +152,3 @@ If you use this project or have suggestions, please open an issue or a PR.
 Acknowledgements
 - UNO game rules specification
 - Inspiration from community projects that demonstrate clean architecture and design patterns
-
-Footer
-------
-Thank you for checking out JUno. Whether you're here to learn design patterns, build an AI, or extend the game with a new UI, we hope this project is a useful and well-structured starting point.
